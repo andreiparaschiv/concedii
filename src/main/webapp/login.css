@@ -1,0 +1,93 @@
+body
+{
+    background-color:#d0e4fe;
+}
+
+h1
+{
+    color: cadetblue;
+    text-align:center;
+    font-family:"Verdana";
+    font-size:16px;
+}
+
+h2
+{
+    color:orange;
+    text-align:center;
+}
+
+td
+{
+    font-family:"Verdana";
+    font-size:12px;
+}
+
+p
+{
+    font-family:"Verdana";
+    font-size:12px;
+}
+
+p.padding 
+{
+    padding-left: 1cm;
+}
+
+table.imagetable 
+{
+    font-family: verdana,arial,sans-serif;
+    font-size:10px;
+    color:#333333;
+    border-width: 1px;
+    border-color: #999999;
+    border-collapse: collapse;
+}
+
+table.imagetable th 
+{
+    background:#b5cfd2 url('cell-blue.jpg');
+    border-width: 1px;
+    padding: 4px;
+    border-style: solid;
+    border-color: #999999;
+}
+
+table.imagetable td 
+{
+    background: ivory url('cell-grey.jpg');
+    border-width: 1px;
+    padding: 4px;
+    border-style: solid;
+    border-color: #999999;
+}
+
+.input-disabled
+{
+    background-color:yellow;
+    border:1px solid #ABADB3;
+    padding:2px 1px;
+}
+
+body {
+        background-color: #d0e4fe;
+        font-family: Verdana;
+        font-size: 10px;
+        color: #666;
+        margin: 0px;
+        padding: 0px;
+}
+
+.wrapper {
+        width: 1024px;
+        height: 650px;
+        margin: 0 auto;
+        background: white;
+        margin: 0 auto;
+}
+
+.container {
+        min-height: 400px;
+        border-top: 1px solid gray;
+        padding: 50px;
+}
