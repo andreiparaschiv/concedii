@@ -4,9 +4,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Inregistrare Utilizator</title>
-        <link href="login.css" rel="stylesheet" type="text/css">
+        <link href="login.css" rel="stylesheet" type="text/css">        
     </head>
     <body>
+
     <center><img src="Jademy.png" alt="Jademy.png"/></center>
         <form action="registerServlet" method="post" name="frm" >
             <center><p>INREGISTRARE UTILIZATOR NOU</p></center>

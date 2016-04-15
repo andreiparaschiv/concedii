@@ -1,3 +1,5 @@
+<%@page import="org.jfree.util.Rotation"%>
+<%@page import="org.jfree.chart.plot.PiePlot3D"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page language="java" import="java.sql.*"%>
 <!DOCTYPE html>
@@ -233,37 +235,38 @@
                 Connection connect = DriverManager.getConnection( 
                 "jdbc:mysql://localhost:3306/java" , "root","Zap2klaz");
                 Statement statement = connect.createStatement();
-                ResultSet resultSet = statement.executeQuery("SELECT tipconcediu, "
-                        + "SUM(nrzile) AS total FROM java.prj_cereri where uname='" + session.getAttribute("userid") + "' " + "GROUP BY tipconcediu");
+                ResultSet resultSet = statement.executeQuery("select tipconcediu, "
+                        + "sum(nrzile) as total from java.prj_cereri where uname='" + session.getAttribute("userid") + "' " + "GROUP BY tipconcediu");
                 DefaultPieDataset dataset = new DefaultPieDataset();
                 while(resultSet.next()) 
                 {
                     dataset.setValue( 
                     resultSet.getString("tipconcediu"),
                     Double.parseDouble(resultSet.getString("total")));
-                }
+                }          
                 JFreeChart chart = ChartFactory.createPieChart("Raport concedii efectuate - " + session.getAttribute("userid"), dataset, true, true, false);
                 try {
                     final ChartRenderingInfo info = new ChartRenderingInfo(new StandardEntityCollection());
-                    final File file1 = new File(getServletContext().getRealPath(".") + "/piechart.png");
+                    final File file1 = new File(getServletContext().getRealPath(".") + "/" + session.getAttribute("userid") + "_piechart.png");
                     System.out.println(getServletContext().getRealPath("."));
-                    ChartUtilities.saveChartAsPNG(file1, chart, 600, 400, info);
+                    ChartUtilities.saveChartAsPNG(file1, chart, 500, 400, info);
                 } catch (Exception e) {
                     out.println(e);
                 }
             %>       
-            <img src="piechart.png" width="600" height="400" border="0" usemap="#chart">
+            <img src="<%= session.getAttribute("userid") %>_piechart.png" width="500" height="400" border="0" usemap="#chart">
+            <img src="<%= session.getAttribute("userid") %>_piechart.png" width="500" height="400" border="0" usemap="#chart">
         </form>
     </div>
 
-<div id="profil">
+    <div id="profil">
         <form action="uploadServlet" method="post" name="frm2" enctype="multipart/form-data">
-            <p>ACTUALIZARE PROFIL UTILIZATOR></p>
+            <p>ACTUALIZARE PROFIL UTILIZATOR</p>
             <table>
                 <tr>
                     <td>Utilizator :</td>
                     <td><input type="text" name="id" id="id" value="<%= session.getAttribute("userid")%>"/></td>
-                    <td rowspan="4"><img src="/mavenproject3/pictureServlet?id=<%= session.getAttribute("userid")%>" width="200" border="1"/></td>
+                    <td rowspan="7"><img src="/mavenproject3/pictureServlet?id=<%= session.getAttribute("userid")%>" width="200" border="1"/></td>
                 </tr>
                 <tr>
                     <td>Prenume :</td>
@@ -276,15 +279,18 @@
                 <tr>
                     <td>Email :</td>
                     <td><input type="text" name="email" value="<%= session.getAttribute("email")%>"/></td>
-                </tr>
+                </tr> 
                 <tr>
-                    <input type="file" name="file"/>
-                    <input type="submit" value="Upload" />
-                </tr>
+                    <td colspan="2"><input type="file" name="file"/></td>
+                </tr> 
                 <tr>
-                    <td><input type="text" name="utilizator" id="utilizator" value="<%= session.getAttribute("userid")%>"/></td>
-                </tr>
+                    <td colspan="2"><input type="submit" value="Upload" /></td>
+                </tr> 
+                <tr>
+                    <td></td>
+                </tr> 
             </table>
+            <input type="text" name="utilizator" id="utilizator" value="<%= session.getAttribute("userid")%>"/>
         </form>
     </div>
 

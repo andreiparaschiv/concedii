@@ -39,8 +39,8 @@ public class registerServlet extends HttpServlet {
           conn.setAutoCommit(false);
           try (PreparedStatement pst = (PreparedStatement) 
                 conn.prepareStatement("insert into java.prj_members(first_name,"
-                        + "last_name,email,uname,pass,regdate) "
-                        + "values(?,?,?,?,?,?)")) 
+                        + "last_name,email,uname,pass,regdate, poza) "
+                        + "values(?,?,?,?,?,?,'default.png')")) 
                 {
                 pst.setString(1,Fname);
                 pst.setString(2,Lname);
